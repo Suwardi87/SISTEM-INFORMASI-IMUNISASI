@@ -82,7 +82,7 @@ $result = $koneksi->query($sql);
                                     <table id="jadwalTable" class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
+                                                <th>No</th>
                                                 <th>Tanggal</th>
                                                 <th>Waktu Mulai</th>
                                                 <th>Waktu Selesai</th>
@@ -93,10 +93,12 @@ $result = $koneksi->query($sql);
                                         <tbody>
                                             <?php
                                             if ($result->num_rows > 0) {
+                                                $no = 0 ;
                                                 while ($row = $result->fetch_assoc()) {
+                                                    $no++ ;
                                                     ?>
                                                     <tr>
-                                                        <td><?php echo $row['id_jadwal']; ?></td>
+                                                        <td><?php echo $no; ?></td>
                                                         <td><?php echo $row['tgl']; ?></td>
                                                         <td><?php echo $row['waktu_mulai']; ?></td>
                                                         <td><?php echo $row['waktu_selesai']; ?></td>

@@ -21,7 +21,7 @@
                                     <a class="dropdown-item" href="pengguna.php">Data Pengguna</a>
                                     <a class="dropdown-item" href="data_bayi.php">Data Bayi</a>
                                     <a class="dropdown-item" href="data_balita.php">Data Balita</a>
-                                    <a class="dropdown-item" href="orang_tua.php">Data Orang Tua</a>
+                                    <!-- <a class="dropdown-item" href="orang_tua.php">Data Orang Tua</a> -->
                                     <a class="dropdown-item" href="pelayanan_bayi.php">Pelayanan Bayi</a>
                                     <a class="dropdown-item" href="pelayanan_balita.php">Pelayanan Balita</a>
                                     <a class="dropdown-item" href="jadwal.php">Data Jadwal</a>

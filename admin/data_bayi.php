@@ -192,13 +192,13 @@ $result = $koneksi->query($sql);
                                                     <td>{$row['nik_ibu']}</td>
                                                     <td>{$row['nama_ibu']}</td>
                                                     <td>{$row['alamat']}</td>
-                                                    <td>{$row['buku_kia']}</td>
-                                                    <td>{$row['berat_lhr']}</td>
-                                                    <td>{$row['tinggi_lhr']}</td>
+                                                    <td>{$row['buku_kia']} </td>
+                                                    <td>{$row['berat_lhr']} kg</td>
+                                                    <td>{$row['tinggi_lhr']} cm</td>
                                                     <td>{$row['waktu_kunjungan']}</td>
                                                     <td>
-                                                        <button class='btn btn-warning btn-sm' onclick='editBayi(".json_encode($row).")'>Ubah</button>
-                                                        <a href='?delete={$row['id_data_bayi']}' class='btn btn-danger btn-sm' onclick='return confirm(\"Yakin ingin menghapus data ini?\")'>Hapus</a>
+     <div class='form-button-action d-flex '>                                                    <button class='btn btn-warning btn-sm' onclick='editBayi(".json_encode($row).")'> <i class='fa fa-edit text-light'></i></button>
+                                                        <a href='?delete={$row['id_data_bayi']}' class='btn btn-danger btn-sm' onclick='return confirm(\"Yakin ingin menghapus data ini?\")'><i class='fa fa-times text-light'></i></a>
                                                     </td>
                                                 </tr>";
                                                 $no++;

@@ -124,7 +124,7 @@ $result = $koneksi->query($sql);
                                     <table id="penggunaTable" class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
+                                                <th>No</th>
                                                 <th>Nama Lengkap</th>
                                                 <th>Alamat</th>
                                                 <th>Tanggal Lahir</th>
@@ -138,10 +138,12 @@ $result = $koneksi->query($sql);
                                         <tbody>
                                             <?php
                                             if ($result->num_rows > 0) {
+                                                $no = 0;
                                                 while ($row = $result->fetch_assoc()) {
+                                                    $no++;
                                             ?>
                                                     <tr>
-                                                        <td><?php echo $row['id_pengguna']; ?></td>
+                                                        <td><?php echo $no; ?></td>
                                                         <td><?php echo $row['nama_lengkap']; ?></td>
                                                         <td><?php echo $row['alamat']; ?></td>
                                                         <td><?php echo $row['tgl_lhr']; ?></td>
@@ -150,11 +152,11 @@ $result = $koneksi->query($sql);
                                                         <td><?php echo $row['password']; ?></td>
                                                         <td><?php echo $row['level']; ?></td>
                                                         <td>
-                                                            <div class="form-button-action">
-                                                                <button type="button" class="btn btn-link btn-primary btn-lg" onclick="editPengguna(<?php echo $row['id_pengguna']; ?>, '<?php echo $row['nama_lengkap']; ?>', '<?php echo $row['alamat']; ?>', '<?php echo $row['tgl_lhr']; ?>', '<?php echo $row['tmp_lhr']; ?>', '<?php echo $row['username']; ?>', '<?php echo $row['password']; ?>', '<?php echo $row['level']; ?>')">
-                                                                    <i class="fa fa-edit"></i>
+                                                            <div class="form-button-action d-flex">
+                                                                <button type="button" class="btn btn-link btn-primary text-light " onclick="editPengguna(<?php echo $row['id_pengguna']; ?>, '<?php echo $row['nama_lengkap']; ?>', '<?php echo $row['alamat']; ?>', '<?php echo $row['tgl_lhr']; ?>', '<?php echo $row['tmp_lhr']; ?>', '<?php echo $row['username']; ?>', '<?php echo $row['password']; ?>', '<?php echo $row['level']; ?>')">
+                                                                    <i class="fa fa-edit "></i>
                                                                 </button>
-                                                                <a href="?delete=<?php echo $row['id_pengguna']; ?>" class="btn btn-link btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
+                                                                <a href="?delete=<?php echo $row['id_pengguna']; ?>" class="btn btn-link btn-danger text-light" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
                                                                     <i class="fa fa-times"></i>
                                                                 </a>
                                                             </div>

@@ -35,7 +35,7 @@ if($cek > 0){
 		$_SESSION['username'] = $username;
 		$_SESSION['level'] = "kader";
 		// alihkan ke halaman dashboard wisatawan
-		header("location:kader/indexKader.php");
+		header("location:admin/indexAdmin.php");
 
 	// cek jika user login sebagai staffPengelola
 	}else if($data['level']=="staffPengelola"){

@@ -38,10 +38,10 @@ if ($jenis_laporan == 'data_bayi') {
     $result = $koneksi->query($query_pelayanan_balita);
 }
 
-$koneksi = mysqli_connect("localhost","root","","db_poskesri");
- 
+$koneksi = mysqli_connect("localhost", "root", "", "db_poskesri");
+
 // Check connection
-if (mysqli_connect_errno()){
+if (mysqli_connect_errno()) {
     echo "Koneksi database gagal : " . mysqli_connect_error();
 }
 ?>
@@ -100,7 +100,7 @@ if (mysqli_connect_errno()){
                                     <table id="laporanTable" class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
-                                                <?php if ($jenis_laporan == 'data_bayi'): ?>
+                                                <?php if ($jenis_laporan == 'data_bayi') : ?>
                                                     <th>ID</th>
                                                     <th>NIK Bayi</th>
                                                     <th>Nama Bayi</th>
@@ -115,13 +115,13 @@ if (mysqli_connect_errno()){
                                                     <th>Berat Lahir</th>
                                                     <th>Tinggi Lahir</th>
                                                     <th>Waktu Kunjungan</th>
-                                                <?php elseif ($jenis_laporan == 'pelayanan_bayi'): ?>
+                                                <?php elseif ($jenis_laporan == 'pelayanan_bayi') : ?>
                                                     <th>ID</th>
-                                                    <th>Nama Bayi</th>
-                                                    <th>Jenis Kelamin</th>
-                                                    <th>Tanggal Lahir</th>
-                                                    <th>Berat Lahir</th>
-                                                <?php elseif ($jenis_laporan == 'data_balita'): ?>
+                                                <th>ID Data Bayi</th>
+                                                <th>ID Jadwal</th>
+                                                <th>Pilihan Imunisasi</th>
+                                                <th>Keterangan</th>
+                                                <?php elseif ($jenis_laporan == 'data_balita') : ?>
                                                     <th>ID</th>
                                                     <th>NIK Balita</th>
                                                     <th>Nama Balita</th>
@@ -132,7 +132,7 @@ if (mysqli_connect_errno()){
                                                     <th>Nama Ibu</th>
                                                     <th>Alamat</th>
                                                     <th>Buku KIA</th>
-                                                <?php elseif ($jenis_laporan == 'pelayanan_balita'): ?>
+                                                <?php elseif ($jenis_laporan == 'pelayanan_balita') : ?>
                                                     <th>ID</th>
                                                     <th>Nama Balita</th>
                                                     <th>Jenis Kelamin</th>
@@ -162,11 +162,11 @@ if (mysqli_connect_errno()){
                                                         echo "<td>{$row['tinggi_lhr']}</td>";
                                                         echo "<td>{$row['waktu_kunjungan']}</td>";
                                                     } elseif ($jenis_laporan == 'pelayanan_bayi') {
-                                                        echo "<td>{$row['id_pelayanan_bayi']}</td>";
-                                                        echo "<td>{$row['nama_bayi']}</td>";
-                                                        echo "<td>{$row['jenis_kelamin']}</td>";
-                                                        echo "<td>{$row['tgl_lahir']}</td>";
-                                                        echo "<td>{$row['berat_lahir']}</td>";
+                                                        echo "                                                        <td> {$row['id_pelayanan_bayi']}</td>";
+                                                        echo "                                                        <td> {$row['id_data_bayi']}</td>";
+                                                        echo "                                                        <td> {$row['id_jadwal']}</td>";
+                                                        echo "                                                        <td> {$row['pilihan_imunisasi']}</td>";
+                                                        echo "                                                        <td> {$row['keterangan']}</td>";
                                                     } elseif ($jenis_laporan == 'data_balita') {
                                                         echo "<td>{$row['id_data_balita']}</td>";
                                                         echo "<td>{$row['nik_balita']}</td>";

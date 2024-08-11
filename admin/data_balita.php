@@ -136,7 +136,7 @@ $result = $koneksi->query($sql);
                                     <table id="add-row" class="display table table-striped table-hover">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
+                                                <th>No</th>
                                                 <th>NIK Balita</th>
                                                 <th>Nama Balita</th>
                                                 <th>Tanggal Lahir</th>
@@ -152,10 +152,12 @@ $result = $koneksi->query($sql);
                                         <tbody>
                                             <?php
                                             if ($result->num_rows > 0) {
+                                                $no = 0;
                                                 while ($row = $result->fetch_assoc()) {
+                                                    $no++;
                                                     ?>
                                                     <tr>
-                                                        <td><?php echo $row['id_data_balita']; ?></td>
+                                                        <td><?php echo $no; ?></td>
                                                         <td><?php echo $row['nik_balita']; ?></td>
                                                         <td><?php echo $row['nama_balita']; ?></td>
                                                         <td><?php echo $row['tgl_lhr']; ?></td>
@@ -166,15 +168,15 @@ $result = $koneksi->query($sql);
                                                         <td><?php echo $row['alamat']; ?></td>
                                                         <td><?php echo $row['buku_kia']; ?></td>
                                                         <td>
-                                                            <div class="form-button-action">
-                                                                <button type="button" class="btn btn-link btn-primary btn-lg" onclick="editBalita(<?php echo $row['id_data_balita']; ?>, '<?php echo $row['nik_balita']; ?>', '<?php echo $row['nama_balita']; ?>', '<?php echo $row['tgl_lhr']; ?>', '<?php echo $row['nik_ayah']; ?>', '<?php echo $row['nama_ayah']; ?>', '<?php echo $row['nik_ibu']; ?>', '<?php echo $row['nama_ibu']; ?>', '<?php echo $row['alamat']; ?>', '<?php echo $row['buku_kia']; ?>')">
-                                                                    <i class="fa fa-edit"></i>
+                                                            <div class="form-button-action d-flex ">
+                                                                <button type="button" class="btn btn-link btn-primary " onclick="editBalita(<?php echo $row['id_data_balita']; ?>, '<?php echo $row['nik_balita']; ?>', '<?php echo $row['nama_balita']; ?>', '<?php echo $row['tgl_lhr']; ?>', '<?php echo $row['nik_ayah']; ?>', '<?php echo $row['nama_ayah']; ?>', '<?php echo $row['nik_ibu']; ?>', '<?php echo $row['nama_ibu']; ?>', '<?php echo $row['alamat']; ?>', '<?php echo $row['buku_kia']; ?>')">
+                                                                    <i class="fa fa-edit text-light"></i>
                                                                 </button>
                                                                 <a href="?delete=<?php echo $row['id_data_balita']; ?>" class="btn btn-link btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
-                                                                    <i class="fa fa-times"></i>
+                                                                    <i class="fa fa-times text-light"></i>
                                                                 </a>
                                                             </div>
-                                                        </td>
+                                                        </td> 
                                                     </tr>
                                                     <?php
                                                 }

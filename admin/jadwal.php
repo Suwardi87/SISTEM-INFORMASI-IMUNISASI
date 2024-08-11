@@ -110,7 +110,7 @@ $result = $koneksi->query($sql);
                                     <table id="jadwalTable" class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
+                                                <th>No</th>
                                                 <th>Tanggal</th>
                                                 <th>Waktu Mulai</th>
                                                 <th>Waktu Selesai</th>
@@ -122,21 +122,23 @@ $result = $koneksi->query($sql);
                                         <tbody>
                                             <?php
                                             if ($result->num_rows > 0) {
+                                                $no = 0;
                                                 while ($row = $result->fetch_assoc()) {
+                                                    $no++;
                                                     ?>
                                                     <tr>
-                                                        <td><?php echo $row['id_jadwal']; ?></td>
+                                                        <td><?php echo $no; ?></td>
                                                         <td><?php echo $row['tgl']; ?></td>
                                                         <td><?php echo $row['waktu_mulai']; ?></td>
                                                         <td><?php echo $row['waktu_selesai']; ?></td>
                                                         <td><?php echo $row['lokasi']; ?></td>
                                                         <td><?php echo $row['kegiatan']; ?></td>
                                                         <td>
-                                                            <div class="form-button-action">
-                                                                <button type="button" class="btn btn-link btn-primary btn-lg" onclick="editJadwal(<?php echo $row['id_jadwal']; ?>, '<?php echo $row['tgl']; ?>', '<?php echo $row['waktu_mulai']; ?>', '<?php echo $row['waktu_selesai']; ?>', '<?php echo $row['lokasi']; ?>', '<?php echo $row['kegiatan']; ?>')">
+                                                            <div class="form-button-action d-flex">
+                                                                <button type="button" class="btn btn-link btn-primary text-light" onclick="editJadwal(<?php echo $row['id_jadwal']; ?>, '<?php echo $row['tgl']; ?>', '<?php echo $row['waktu_mulai']; ?>', '<?php echo $row['waktu_selesai']; ?>', '<?php echo $row['lokasi']; ?>', '<?php echo $row['kegiatan']; ?>')">
                                                                     <i class="fa fa-edit"></i>
                                                                 </button>
-                                                                <a href="?delete=<?php echo $row['id_jadwal']; ?>" class="btn btn-link btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
+                                                                <a href="?delete=<?php echo $row['id_jadwal']; ?>" class="btn btn-link text-light btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
                                                                     <i class="fa fa-times"></i>
                                                                 </a>
                                                             </div>
