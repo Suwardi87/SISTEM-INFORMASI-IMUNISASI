@@ -158,9 +158,9 @@ $result = $koneksi->query($sql);
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>ID Data Balita</th>
+                                            <th class="d-none">ID Data Balita</th>
                                             <th>Nama Balita</th>
-                                            <th>ID Jadwal</th>
+                                            <th class="d-none">ID Jadwal</th>
                                             <th>Lokasi</th>
                                             <th>Berat Badan</th>
                                             <th>Tinggi Badan</th>
@@ -178,9 +178,9 @@ $result = $koneksi->query($sql);
                                         ?>
                                                 <tr>
                                                     <td><?php echo $no; ?></td>
-                                                    <td><?php echo $row['id_data_balita']; ?></td>
+                                                    <td class="d-none"><?php echo $row['id_data_balita']; ?></td>
                                                     <td><?php echo $row['nama_balita']; ?></td>
-                                                    <td><?php echo $row['id_jadwal']; ?></td>
+                                                    <td class="d-none"><?php echo $row['id_jadwal']; ?></td>
                                                     <td><?php echo $row['lokasi']; ?></td>
                                                     <td><?php echo $row['berat_badan'].' kg'; ?></td>
                                                     <td><?php echo $row['tinggi_badan'].' cm'; ?></td>

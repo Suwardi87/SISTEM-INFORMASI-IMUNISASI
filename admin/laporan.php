@@ -2,6 +2,7 @@
 include 'layout/header.php';
 include '../koneksi.php';
 
+// Fetch query parameters
 $jenis_laporan = $_GET['jenis_laporan'] ?? '';
 $periode = $_GET['periode'] ?? '';
 
@@ -9,9 +10,9 @@ $query_data_bayi = "";
 $query_pelayanan_bayi = "";
 $query_data_balita = "";
 $query_pelayanan_balita = "";
-
 $result = null;
 
+// Determine the query based on jenis_laporan
 if ($jenis_laporan == 'data_bayi') {
     $query_data_bayi = "SELECT * FROM data_bayi";
     if ($periode) {
@@ -38,12 +39,28 @@ if ($jenis_laporan == 'data_bayi') {
     $result = $koneksi->query($query_pelayanan_balita);
 }
 
-$koneksi = mysqli_connect("localhost", "root", "", "db_poskesri");
-
 // Check connection
+$koneksi = mysqli_connect("localhost", "root", "", "db_poskesri");
 if (mysqli_connect_errno()) {
     echo "Koneksi database gagal : " . mysqli_connect_error();
 }
+
+// Function to return the title based on jenis_laporan
+function getLaporanTitle($jenis_laporan) {
+    switch ($jenis_laporan) {
+        case 'data_bayi':
+            return 'Data Bayi';
+        case 'pelayanan_bayi':
+            return 'Pelayanan Bayi';
+        case 'data_balita':
+            return 'Data Balita';
+        case 'pelayanan_balita':
+            return 'Pelayanan Balita';
+        default:
+            return 'Laporan';
+    }
+}
+$laporan_title = getLaporanTitle($jenis_laporan);
 ?>
 
 <div class="wrapper">
@@ -86,7 +103,7 @@ if (mysqli_connect_errno()) {
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <h4 class="card-title mb-0">Data Laporan</h4>
+                                    <h4 class="card-title mb-0">Data Laporan - <?= $laporan_title; ?></h4>
                                     <div>
                                         <button type="button" class="btn btn-secondary btn-round ms-2" onclick="printTable()">
                                             <i class="fa fa-print"></i>
@@ -117,10 +134,10 @@ if (mysqli_connect_errno()) {
                                                     <th>Waktu Kunjungan</th>
                                                 <?php elseif ($jenis_laporan == 'pelayanan_bayi') : ?>
                                                     <th>ID</th>
-                                                <th>ID Data Bayi</th>
-                                                <th>ID Jadwal</th>
-                                                <th>Pilihan Imunisasi</th>
-                                                <th>Keterangan</th>
+                                                    <th>ID Data Bayi</th>
+                                                    <th>ID Jadwal</th>
+                                                    <th>Pilihan Imunisasi</th>
+                                                    <th>Keterangan</th>
                                                 <?php elseif ($jenis_laporan == 'data_balita') : ?>
                                                     <th>ID</th>
                                                     <th>NIK Balita</th>
@@ -162,11 +179,11 @@ if (mysqli_connect_errno()) {
                                                         echo "<td>{$row['tinggi_lhr']}</td>";
                                                         echo "<td>{$row['waktu_kunjungan']}</td>";
                                                     } elseif ($jenis_laporan == 'pelayanan_bayi') {
-                                                        echo "                                                        <td> {$row['id_pelayanan_bayi']}</td>";
-                                                        echo "                                                        <td> {$row['id_data_bayi']}</td>";
-                                                        echo "                                                        <td> {$row['id_jadwal']}</td>";
-                                                        echo "                                                        <td> {$row['pilihan_imunisasi']}</td>";
-                                                        echo "                                                        <td> {$row['keterangan']}</td>";
+                                                        echo "<td>{$row['id_pelayanan_bayi']}</td>";
+                                                        echo "<td>{$row['id_data_bayi']}</td>";
+                                                        echo "<td>{$row['id_jadwal']}</td>";
+                                                        echo "<td>{$row['pilihan_imunisasi']}</td>";
+                                                        echo "<td>{$row['keterangan']}</td>";
                                                     } elseif ($jenis_laporan == 'data_balita') {
                                                         echo "<td>{$row['id_data_balita']}</td>";
                                                         echo "<td>{$row['nik_balita']}</td>";
@@ -181,44 +198,65 @@ if (mysqli_connect_errno()) {
                                                     } elseif ($jenis_laporan == 'pelayanan_balita') {
                                                         echo "<td>{$row['id_pelayanan_balita']}</td>";
                                                         echo "<td>{$row['nama_balita']}</td>";
-                                                        echo "<td>{$row['jenis_kelamin']}</td>";
+                                                        echo "<td>{$row['jns_kel']}</td>";
                                                         echo "<td>{$row['tgl_lahir']}</td>";
                                                         echo "<td>{$row['berat_badan']}</td>";
                                                     }
                                                     echo "</tr>";
                                                 }
                                             } else {
-                                                echo "<tr><td colspan='14'>Tidak ada data</td></tr>";
+                                                echo "<tr><td colspan='100%' class='text-center'>No data available</td></tr>";
                                             }
                                             ?>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                            <div class="card-footer text-end">
-                                <p>Mengetahui,</p>
-                                <br><br>
-                                <p>______________________</p>
-                                <p>Kepala Poskesri</p>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="main-footer">
+            <?php include 'layout/footer.php'; ?>
+        </div>
     </div>
 </div>
 
-<?php include 'layout/footer.php'; ?>
-
 <script>
-    function printTable() {
-        var printContents = document.getElementById('laporanTable').outerHTML;
-        var originalContents = document.body.innerHTML;
+function printTable() {
+    var reportType = document.getElementById('jenisLaporan').value;
+    var table = document.getElementById('laporanTable').outerHTML;
+    var title = '';
 
-        document.body.innerHTML = "<html><head><title>Cetak Laporan</title></head><body>" + printContents + "<br><br><p>Mengetahui,</p><br><br><p>______________________</p><p>Kepala Poskesri</p></body></html>";
-        window.print();
-        document.body.innerHTML = originalContents;
-        window.location.reload();
+    switch (reportType) {
+        case 'data_bayi':
+            title = 'Data Bayi';
+            break;
+        case 'pelayanan_bayi':
+            title = 'Pelayanan Bayi';
+            break;
+        case 'data_balita':
+            title = 'Data Balita';
+            break;
+        case 'pelayanan_balita':
+            title = 'Pelayanan Balita';
+            break;
+        default:
+            title = 'Laporan';
     }
+
+    var newWin = window.open('', '', 'width=900, height=650');
+    newWin.document.write('<html><head><title>Poskesri Kubu Nan V Nagari Batipuh Baruah</title>');
+    newWin.document.write('<style>');
+    newWin.document.write('table { width: 100%; border-collapse: collapse; }');
+    newWin.document.write('table, th, td { border: 1px solid black; }');
+    newWin.document.write('th, td { padding: 8px; text-align: left; }');
+    newWin.document.write('</style></head><body>');
+    newWin.document.write('<h2>' + title + '</h2>');
+    newWin.document.write('<table>' + table + '</table>');
+    newWin.document.write('</body></html>');
+    newWin.print();
+    newWin.close();
+}
 </script>

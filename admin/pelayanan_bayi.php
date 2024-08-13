@@ -150,9 +150,9 @@ $jadwal_options = $koneksi->query("SELECT id_jadwal, lokasi FROM jadwal");
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>ID Data Bayi</th>
+                                                <th class="d-none">ID Data Bayi</th>
                                                 <th>Nama Bayi</th>
-                                                <th>ID Jadwal</th>
+                                                <th class="d-none">ID Jadwal</th>
                                                 <th>Lokasi</th>
                                                 <th>Pilihan Imunisasi</th>
                                                 <th>Keterangan</th>
@@ -168,9 +168,9 @@ $jadwal_options = $koneksi->query("SELECT id_jadwal, lokasi FROM jadwal");
                                             ?>
                                                     <tr>
                                                         <td><?php echo $no; ?></td>
-                                                        <td><?php echo $row['id_data_bayi']; ?></td>
+                                                        <td class="d-none"><?php echo $row['id_data_bayi']; ?></td>
                                                         <td><?php echo $row['nama_bayi']; ?></td>
-                                                        <td><?php echo $row['id_jadwal']; ?></td>
+                                                        <td class="d-none"><?php echo $row['id_jadwal']; ?></td>
                                                         <td><?php echo $row['lokasi']; ?></td>
                                                         <td><?php echo $row['pilihan_imunisasi']; ?></td>
                                                         <td><?php echo $row['keterangan']; ?></td>
